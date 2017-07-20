@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-12 10:30:52 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="com.atguigu.hibernate.bean">
+    <class name="User" table="USER" batch-size="3">
+        <id name="userId" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="native" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <set name="orders" table="ORDERS" inverse="true" 
+        batch-size="3" fetch="join" >
+            <key>
+                <column name="USER_FK" />
+            </key>
+            <one-to-many class="Order" />
+        </set>
+    </class>
+</hibernate-mapping>
